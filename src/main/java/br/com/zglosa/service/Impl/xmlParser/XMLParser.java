@@ -9,6 +9,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.springframework.core.io.ClassPathResource;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -31,7 +32,8 @@ public class XMLParser {
     private Element element;
 
     public XMLParser(String filePath) throws ParserConfigurationException, SAXException, IOException {
-        this.file = new File(filePath);
+        ClassPathResource classPathResource = new ClassPathResource(filePath);
+        this.file = classPathResource.getFile();
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();

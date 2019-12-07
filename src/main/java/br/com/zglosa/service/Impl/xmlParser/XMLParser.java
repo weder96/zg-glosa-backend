@@ -87,6 +87,8 @@ public class XMLParser {
 
                 List<ProcedimentoExecutado> procedimentoExecutados = this.getProcedimentosExecutado(guiaElement);
                 guiaResumoInternacao.setProcedimentoExecutados(procedimentoExecutados);
+
+                guiaResumoInternacoes.add(guiaResumoInternacao);
             }
         }
 

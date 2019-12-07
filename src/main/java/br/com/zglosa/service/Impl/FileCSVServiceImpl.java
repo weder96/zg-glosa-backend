@@ -4,9 +4,15 @@ import br.com.zglosa.domain.DadosBeneficiario;
 import br.com.zglosa.domain.GuiaResumoInternacao;
 import br.com.zglosa.domain.LoteGuias;
 import br.com.zglosa.domain.ProcedimentoExecutado;
+import br.com.zglosa.repository.ProcedimentoExecutadoRepository;
+import br.com.zglosa.service.DadosBeneficiarioService;
+import br.com.zglosa.service.FileCSVService;
+import br.com.zglosa.service.ProcedimentoExecutadoService;
 import br.com.zglosa.to.CsvDTO;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -17,7 +23,12 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class FileCSVServiceImpl  {
+public class FileCSVServiceImpl implements FileCSVService{
+
+    @Autowired
+    private ProcedimentoExecutadoService procedimentoExecutadoService;
+    @Autowired
+    private DadosBeneficiarioService dadosBeneficiarioService;
 
 
     public  void alimentarCSVConvenio() {
@@ -68,10 +79,16 @@ public class FileCSVServiceImpl  {
             LoteGuias loteGuias = new LoteGuias();
             loteGuias.setNumeroLote(Integer.parseInt(csvDTO.getLote()));
 
-            DadosBeneficiario dadosBeneficiario = new DadosBeneficiario();
+            DadosBeneficiario dadosBeneficiario = dadosBeneficiarioService.getByNumeroCarteira(Integer.parseInt(csvDTO.getMatricula()));
+            if(dadosBeneficiario==null){
+                dadosBeneficiario = new DadosBeneficiario();
+            }
             dadosBeneficiario.setNumeroCarteira(Integer.parseInt(csvDTO.getMatricula()));
             dadosBeneficiario.setAtendimentoRN(csvDTO.getRn());
             dadosBeneficiario.setNomeBeneficiario(csvDTO.getNome());
+            if(dadosBeneficiario.getId()==null) {
+                dadosBeneficiarioService.salvar(dadosBeneficiario);
+            }
 
             GuiaResumoInternacao guiaResumoInternacao = new GuiaResumoInternacao();
             guiaResumoInternacao.setNumeroGuiaPrestado(Long.parseLong(csvDTO.getNumeroGuiaPrestador()));
@@ -95,7 +112,7 @@ public class FileCSVServiceImpl  {
             procedimentoExecutado.setValorPago(Float.parseFloat(csvDTO.getValorPago()));
             procedimentoExecutado.setMotivoGlosa(csvDTO.getMotivoGlosa());
             procedimentoExecutado.setGuiaResumoInternacao(guiaResumoInternacao);
-
+            procedimentoExecutadoService.salvar(procedimentoExecutado);
             procedimentoExecutados.add(procedimentoExecutado);
 
         }
@@ -189,9 +206,4 @@ public class FileCSVServiceImpl  {
         return retorno;
     }
 
-//
-//    @Override
-//    public void run(String... args) throws Exception {
-//        alimentarCSVConvenio();
-//    }
 }

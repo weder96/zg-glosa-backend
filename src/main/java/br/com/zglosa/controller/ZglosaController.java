@@ -33,7 +33,7 @@ public class ZglosaController {
 
 	@RequestMapping(value = "/zglosa/csv")
 	public ResponseEntity<?> getCSV() throws URISyntaxException {
-		fileCSVService.downloadCSV();
+		fileCSVService.alimentarCSVConvenio();
 		return ResponseEntity.ok("");
 	}
 

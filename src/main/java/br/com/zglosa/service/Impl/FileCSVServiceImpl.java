@@ -8,6 +8,7 @@ import br.com.zglosa.service.FileCSVService;
 import br.com.zglosa.to.CsvDTO;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -18,16 +19,16 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class FileCSVServiceImpl implements FileCSVService {
+public class FileCSVServiceImpl implements FileCSVService, CommandLineRunner {
 
 
     @Override
-    public  void downloadCSV() {
+    public  void alimentarCSVConvenio() {
         try {
-            for(String link:buscaLinkDownload()) {
+            for(String link: extrairLinkDownloadCSV()) {
                 URL url = new URL(link);
 
-                File file = new File("aa.csv");
+                File file = new File("temp.csv");
 
                 FileUtils.copyURLToFile(url, file);
                 carregarCSV(file);
@@ -53,6 +54,7 @@ public class FileCSVServiceImpl implements FileCSVService {
             }
 
             System.out.println(csvdto.size());
+            transformarDtoParaObjetoRelacional(csvdto);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -62,9 +64,9 @@ public class FileCSVServiceImpl implements FileCSVService {
     }
 
 
-    public void transformarDtoParaObjetoRelacional(List<CsvDTO> csvDTOS) {
+    public List<ProcedimentoExecutado> transformarDtoParaObjetoRelacional(List<CsvDTO> csvDTOS) {
+        List<ProcedimentoExecutado> procedimentoExecutados = new ArrayList<>();
         for (CsvDTO csvDTO : csvDTOS) {
-
 
             LoteGuias loteGuias = new LoteGuias();
             loteGuias.setNumeroLote(Integer.parseInt(csvDTO.getLote()));
@@ -97,8 +99,10 @@ public class FileCSVServiceImpl implements FileCSVService {
             procedimentoExecutado.setMotivoGlosa(csvDTO.getMotivoGlosa());
             procedimentoExecutado.setGuiaResumoInternacao(guiaResumoInternacao);
 
+            procedimentoExecutados.add(procedimentoExecutado);
 
         }
+        return procedimentoExecutados;
     }
 
 
@@ -134,21 +138,21 @@ public class FileCSVServiceImpl implements FileCSVService {
 
 
 
-    public  List<String> buscaLinkDownload() {
+    public  List<String> extrairLinkDownloadCSV() {
         try {
 
             List<String> links = new ArrayList<>();
-            preencheListaComLinksHTML(links);
-            removeLinksNaoDesejados(links);
+            extrairLinkHTML(links);
+            removerLinksNaoDesejados(links);
 
-            return filtraLinkDaTagHtml(links);
+            return filtrarEnderecoDaTagHtml(links);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         return null;
     }
-    private  void preencheListaComLinksHTML(List<String> links){
+    private  void extrairLinkHTML(List<String> links){
         try {
             URL url =   new URL("http://172.22.1.108:8080/pagamento-glosamax/arquivo/index");
             BufferedReader in = new BufferedReader( new InputStreamReader(url.openStream()));
@@ -165,7 +169,7 @@ public class FileCSVServiceImpl implements FileCSVService {
         }
     }
 
-    private  void removeLinksNaoDesejados(List<String> links){
+    private  void removerLinksNaoDesejados(List<String> links){
 
 
         Iterator<String> it = links.iterator();
@@ -179,7 +183,7 @@ public class FileCSVServiceImpl implements FileCSVService {
         }
     }
 
-    private  List<String> filtraLinkDaTagHtml(List<String> links){
+    private  List<String> filtrarEnderecoDaTagHtml(List<String> links){
         List<String> retorno = new ArrayList<>();
         for(String htmlTag :links){
             htmlTag=  htmlTag.substring(htmlTag.indexOf("href=")+6);
@@ -189,4 +193,8 @@ public class FileCSVServiceImpl implements FileCSVService {
     }
 
 
+    @Override
+    public void run(String... args) throws Exception {
+        alimentarCSVConvenio();
+    }
 }

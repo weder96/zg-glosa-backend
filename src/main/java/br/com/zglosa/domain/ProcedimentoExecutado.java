@@ -18,6 +18,7 @@ public @Data class ProcedimentoExecutado implements Serializable {
 	private String horaFinal;
 	private int codigoTabela;
 	private int codigoProcedimento;
+	private String descricaoProcedimento;
 	private int quantidadeExecutada;
 	private float reducaoAcrescimo;
 	private float valorUnitario;
@@ -121,6 +122,14 @@ public @Data class ProcedimentoExecutado implements Serializable {
 
 	public void setGuiaResumoInternacao(GuiaResumoInternacao guiaResumoInternacao) {
 		this.guiaResumoInternacao = guiaResumoInternacao;
+	}
+
+	public String getDescricaoProcedimento() {
+		return this.descricaoProcedimento;
+	}
+
+	public void setDescricaoProcedimento(String descricaoProcedimento) {
+		this.descricaoProcedimento = descricaoProcedimento;
 	}
 
 }

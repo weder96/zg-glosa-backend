@@ -152,8 +152,9 @@ public class XMLParser {
                 int codigoTabela = Integer.parseInt(this.getTagValue(procedimentosExecutadoElement, "codigoTabela"));
                 int codigoProcedimento = Integer
                         .parseInt(this.getTagValue(procedimentosExecutadoElement, "codigoProcedimento"));
+                String descricaoProcedimento = this.getTagValue(procedimentosExecutadoElement, "descricaoProcedimento");
                 int quantidadeExecutada = Integer
-                        .parseInt(this.getTagValue(procedimentosExecutadoElement, "descricaoProcedimento"));
+                        .parseInt(this.getTagValue(procedimentosExecutadoElement, "quantidadeExecutada"));
                 float reducaoAcrescimo = Float
                         .parseFloat(this.getTagValue(procedimentosExecutadoElement, "quantidadeExecutada"));
                 float valorUnitario = Float
@@ -166,6 +167,7 @@ public class XMLParser {
                 procedimentoExecutado.setHoraFinal(horaFinal);
                 procedimentoExecutado.setCodigoTabela(codigoTabela);
                 procedimentoExecutado.setCodigoProcedimento(codigoProcedimento);
+                procedimentoExecutado.setDescricaoProcedimento(descricaoProcedimento);
                 procedimentoExecutado.setQuantidadeExecutada(quantidadeExecutada);
                 procedimentoExecutado.setReducaoAcrescimo(reducaoAcrescimo);
                 procedimentoExecutado.setValorUnitario(valorUnitario);

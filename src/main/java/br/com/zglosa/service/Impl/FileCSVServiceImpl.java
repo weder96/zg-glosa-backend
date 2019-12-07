@@ -70,12 +70,12 @@ public class FileCSVServiceImpl implements FileCSVService {
             loteGuias.setNumeroLote(Integer.parseInt(csvDTO.getLote()));
 
             DadosBeneficiario dadosBeneficiario = new DadosBeneficiario();
-            dadosBeneficiario.setNumeroCarteira(csvDTO.getMatricula());
+            dadosBeneficiario.setNumeroCarteira(Integer.parseInt(csvDTO.getMatricula()));
             dadosBeneficiario.setAtendimentoRN(csvDTO.getRn());
-            dadosBeneficiario.setNomeBenificiariio(csvDTO.getNome());
+            dadosBeneficiario.setNomeBeneficiario(csvDTO.getNome());
 
             GuiaResumoInternacao guiaResumoInternacao = new GuiaResumoInternacao();
-            guiaResumoInternacao.setNumeroGuiaPrestador(Long.parseLong(csvDTO.getNumeroGuiaPrestador()));
+            guiaResumoInternacao.setNumeroGuiaPrestado(Long.parseLong(csvDTO.getNumeroGuiaPrestador()));
             guiaResumoInternacao.setNumeroGuiaSolicitacaoInternacao(Long.parseLong(csvDTO.getNumeroGuiaPrestador()));
             guiaResumoInternacao.setSenha(Long.parseLong(csvDTO.getSenha()));
             guiaResumoInternacao.setLoteGuias(loteGuias);

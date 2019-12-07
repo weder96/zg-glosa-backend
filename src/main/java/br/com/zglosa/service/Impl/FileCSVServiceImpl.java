@@ -2,6 +2,7 @@ package br.com.zglosa.service.Impl;
 
 import br.com.zglosa.model.CsvDTO;
 import br.com.zglosa.service.FileCSVService;
+import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;
 
@@ -12,6 +13,7 @@ import java.util.Iterator;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class FileCSVServiceImpl implements FileCSVService {
 
 
@@ -45,7 +47,9 @@ public class FileCSVServiceImpl implements FileCSVService {
             while ((linha = br.readLine()) != null) {
                 csvdto.add (mapearCSVDTO(linha));
             }
+
             System.out.println(csvdto.size());
+
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

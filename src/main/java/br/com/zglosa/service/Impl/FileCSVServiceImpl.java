@@ -1,6 +1,6 @@
 package br.com.zglosa.service.Impl;
 
-import br.com.zglosa.model.CsvDTO;
+import br.com.zglosa.domain.CsvDTO;
 import br.com.zglosa.service.FileCSVService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;

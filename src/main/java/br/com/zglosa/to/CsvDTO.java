@@ -1,4 +1,4 @@
-package br.com.zglosa.model;
+package br.com.zglosa.to;
 
 public class CsvDTO {
 

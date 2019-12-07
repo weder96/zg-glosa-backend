@@ -13,9 +13,9 @@ public @Data class GuiaResumoInternacao {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Long numeronumeroGuiaPrestado;
-	private Long numeroGuiaSolicitaçãoInterna;
-	private Long numeroGuiaInterna;
+	private Long numeroGuiaPrestado;
+	private Long numeroGuiaSolicitacaoInternacao;
+	private Long numeroGuiaOperadora;
 	private Long senha;
 
 	@OneToOne
@@ -23,7 +23,7 @@ public @Data class GuiaResumoInternacao {
 
 	@OneToMany(mappedBy = "guiaResumoInternacao")
 	@OrderBy("id")
-	private List<ProcedimentoExecutado> procedimentoExecutado;
+	private List<ProcedimentoExecutado> procedimentoExecutados;
 
 	@OneToOne
 	private ValorTotal valorTotal;
@@ -39,28 +39,28 @@ public @Data class GuiaResumoInternacao {
 		this.id = id;
 	}
 
-	public Long getNumeronumeroGuiaPrestado() {
-		return this.numeronumeroGuiaPrestado;
+	public Long getNumeroGuiaPrestado() {
+		return this.numeroGuiaPrestado;
 	}
 
-	public void setNumeronumeroGuiaPrestado(Long numeronumeroGuiaPrestado) {
-		this.numeronumeroGuiaPrestado = numeronumeroGuiaPrestado;
+	public void setNumeroGuiaPrestado(Long numeroGuiaPrestado) {
+		this.numeroGuiaPrestado = numeroGuiaPrestado;
 	}
 
-	public Long getNumeroGuiaSolicitaçãoInterna() {
-		return this.numeroGuiaSolicitaçãoInterna;
+	public Long getNumeroGuiaSolicitacaoInternacao() {
+		return this.numeroGuiaSolicitacaoInternacao;
 	}
 
-	public void setNumeroGuiaSolicitaçãoInterna(Long numeroGuiaSolicitaçãoInterna) {
-		this.numeroGuiaSolicitaçãoInterna = numeroGuiaSolicitaçãoInterna;
+	public void setNumeroGuiaSolicitacaoInternacao(Long numeroGuiaSolicitacaoInternacao) {
+		this.numeroGuiaSolicitacaoInternacao = numeroGuiaSolicitacaoInternacao;
 	}
 
-	public Long getNumeroGuiaInterna() {
-		return this.numeroGuiaInterna;
+	public Long getNumeroGuiaOperadora() {
+		return this.numeroGuiaOperadora;
 	}
 
-	public void setNumeroGuiaInterna(Long numeroGuiaInterna) {
-		this.numeroGuiaInterna = numeroGuiaInterna;
+	public void setNumeroGuiaOperadora(Long numeroGuiaOperadora) {
+		this.numeroGuiaOperadora = numeroGuiaOperadora;
 	}
 
 	public Long getSenha() {
@@ -79,12 +79,12 @@ public @Data class GuiaResumoInternacao {
 		this.dadosBeneficiario = dadosBeneficiario;
 	}
 
-	public List<ProcedimentoExecutado> getProcedimentoExecutado() {
-		return this.procedimentoExecutado;
+	public List<ProcedimentoExecutado> getProcedimentoExecutados() {
+		return this.procedimentoExecutados;
 	}
 
-	public void setProcedimentoExecutado(List<ProcedimentoExecutado> procedimentoExecutado) {
-		this.procedimentoExecutado = procedimentoExecutado;
+	public void setProcedimentoExecutados(List<ProcedimentoExecutado> procedimentoExecutados) {
+		this.procedimentoExecutados = procedimentoExecutados;
 	}
 
 	public ValorTotal getValorTotal() {

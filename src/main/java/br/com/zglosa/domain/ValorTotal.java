@@ -11,13 +11,13 @@ public class ValorTotal implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private float valorProcedimento;
+	private float valorProcedimentos;
 	private float valorDiarias;
-	private float valorTaxaslugueis;
-	private float valormateriais;
+	private float valorTaxasAlugueis;
+	private float valorMateriais;
 	private float valorMedicamento;
 	private float valorOpme;
-	private float valorcasesMedicinais;
+	private float valorGasesMedicinais;
 	private float valorTotalGeral;
 
 	@OneToOne(mappedBy = "valorTotal")
@@ -31,12 +31,12 @@ public class ValorTotal implements Serializable {
 		this.id = id;
 	}
 
-	public float getValorProcedimento() {
-		return this.valorProcedimento;
+	public float getValorProcedimentos() {
+		return this.valorProcedimentos;
 	}
 
-	public void setValorProcedimento(float valorProcedimento) {
-		this.valorProcedimento = valorProcedimento;
+	public void setValorProcedimentos(float valorProcedimentos) {
+		this.valorProcedimentos = valorProcedimentos;
 	}
 
 	public float getValorDiarias() {
@@ -47,20 +47,20 @@ public class ValorTotal implements Serializable {
 		this.valorDiarias = valorDiarias;
 	}
 
-	public float getValorTaxaslugueis() {
-		return this.valorTaxaslugueis;
+	public float getValorTaxasAlugueis() {
+		return this.valorTaxasAlugueis;
 	}
 
-	public void setValorTaxaslugueis(float valorTaxaslugueis) {
-		this.valorTaxaslugueis = valorTaxaslugueis;
+	public void setValorTaxasAlugueis(float valorTaxasAlugueis) {
+		this.valorTaxasAlugueis = valorTaxasAlugueis;
 	}
 
-	public float getValormateriais() {
-		return this.valormateriais;
+	public float getValorMateriais() {
+		return this.valorMateriais;
 	}
 
-	public void setValormateriais(float valormateriais) {
-		this.valormateriais = valormateriais;
+	public void setValorMateriais(float valorMateriais) {
+		this.valorMateriais = valorMateriais;
 	}
 
 	public float getValorMedicamento() {
@@ -79,12 +79,12 @@ public class ValorTotal implements Serializable {
 		this.valorOpme = valorOpme;
 	}
 
-	public float getValorcasesMedicinais() {
-		return this.valorcasesMedicinais;
+	public float getValorGasesMedicinais() {
+		return this.valorGasesMedicinais;
 	}
 
-	public void setValorcasesMedicinais(float valorcasesMedicinais) {
-		this.valorcasesMedicinais = valorcasesMedicinais;
+	public void setValorGasesMedicinais(float valorGasesMedicinais) {
+		this.valorGasesMedicinais = valorGasesMedicinais;
 	}
 
 	public float getValorTotalGeral() {

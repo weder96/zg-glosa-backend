@@ -22,8 +22,12 @@ public @Data class ProcedimentoExecutado implements Serializable {
 	private int quantidadeExecutada;
 	private float reducaoAcrescimo;
 	private float valorUnitario;
+	private float valorApresentado;
+	private float valorPago;
+	private float valorGlosa;
 	private float valorTotal;
 	private String unidadeMediada;
+	private String motivoGlosa;
 
 	@ManyToOne
 	private GuiaResumoInternacao guiaResumoInternacao;
@@ -125,11 +129,42 @@ public @Data class ProcedimentoExecutado implements Serializable {
 	}
 
 	public String getDescricaoProcedimento() {
-		return this.descricaoProcedimento;
+		return descricaoProcedimento;
 	}
 
 	public void setDescricaoProcedimento(String descricaoProcedimento) {
 		this.descricaoProcedimento = descricaoProcedimento;
 	}
 
+	public float getValorApresentado() {
+		return valorApresentado;
+	}
+
+	public void setValorApresentado(float valorApresentado) {
+		this.valorApresentado = valorApresentado;
+	}
+
+	public float getValorPago() {
+		return valorPago;
+	}
+
+	public void setValorPago(float valorPago) {
+		this.valorPago = valorPago;
+	}
+
+	public float getValorGlosa() {
+		return valorGlosa;
+	}
+
+	public void setValorGlosa(float valorGlosa) {
+		this.valorGlosa = valorGlosa;
+	}
+
+	public String getMotivoGlosa() {
+		return motivoGlosa;
+	}
+
+	public void setMotivoGlosa(String motivoGlosa) {
+		this.motivoGlosa = motivoGlosa;
+	}
 }

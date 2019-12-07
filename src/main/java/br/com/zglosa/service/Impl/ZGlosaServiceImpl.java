@@ -1,10 +1,17 @@
 package br.com.zglosa.service.Impl;
 
+import br.com.zglosa.domain.DadosBeneficiario;
+import br.com.zglosa.domain.GuiaResumoInternacao;
+import br.com.zglosa.domain.LoteGuias;
+import br.com.zglosa.service.DadosBeneficiarioService;
 import br.com.zglosa.service.ZGlosaService;
 import br.com.zglosa.service.ZGlosaServiceFile;
+import br.com.zglosa.service.ZGlosaServiceLoteGuiasDataImport;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 @AllArgsConstructor
@@ -12,9 +19,25 @@ public class ZGlosaServiceImpl implements ZGlosaService {
 
 	@Autowired
 	private ZGlosaServiceFile zglosaServiceFile;
+
+	@Autowired
+	private DadosBeneficiarioService dadosBeneficiarioService;
+
+	@Autowired
+	private ZGlosaServiceLoteGuiasDataImport zGlosaServiceLoteGuiasDataImport;
+
 	public String getGlosa() {
-		zglosaServiceFile.getFileCsv();
-		zglosaServiceFile.getFileXml();
+		//List<DadosBeneficiario>  beneficiarios = dadosBeneficiarioService.getDadosBeneficia();
 		return "test de Service";
 	}
+
+	public void salvarDadosXml() {
+		LoteGuias lotes = zGlosaServiceLoteGuiasDataImport.parseData("");
+		for(GuiaResumoInternacao guia: lotes.getGuiaResumoInternacao()) {
+			dadosBeneficiarioService.salvar(guia.getDadosBeneficiario());
+			guia.get
+		}
+
+	}
+
 }

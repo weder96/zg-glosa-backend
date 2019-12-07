@@ -5,7 +5,7 @@ import br.com.zglosa.domain.LoteGuias;
 /**
  * ZGlosaServiceDataImport
  */
-public interface ZGlosaServiceLoteGuiasDataImport {
+public interface ZGlosaServiceLoteGuiasDataImport  {
 
     public LoteGuias parseData(String path);
 

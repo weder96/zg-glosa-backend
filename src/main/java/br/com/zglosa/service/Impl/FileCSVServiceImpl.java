@@ -192,9 +192,9 @@ public class FileCSVServiceImpl implements FileCSVService, CommandLineRunner {
         return retorno;
     }
 
-
-    @Override
-    public void run(String... args) throws Exception {
-        alimentarCSVConvenio();
-    }
+//
+//    @Override
+//    public void run(String... args) throws Exception {
+//        alimentarCSVConvenio();
+//    }
 }

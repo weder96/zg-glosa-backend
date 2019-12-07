@@ -1,7 +1,7 @@
 package br.com.zglosa.service.Impl;
 
-import br.com.zglosa.domain.CsvDTO;
 import br.com.zglosa.service.FileCSVService;
+import br.com.zglosa.to.CsvDTO;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.springframework.stereotype.Service;

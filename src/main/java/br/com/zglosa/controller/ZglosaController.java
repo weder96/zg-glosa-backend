@@ -17,10 +17,6 @@ public class ZglosaController {
 	@Autowired
 	private ZGlosaService zglosaService;
 
-
-	@Autowired
-	private FileCSVService fileCSVService;
-
 	@Autowired
 	private ZGlosaServiceLoteGuiasDataImport zGlosaServiceLoteGuiasDataImport;
 
@@ -33,7 +29,7 @@ public class ZglosaController {
 
 	@RequestMapping(value = "/zglosa/csv")
 	public ResponseEntity<?> getCSV() throws URISyntaxException {
-		fileCSVService.alimentarCSVConvenio();
+		//fileCSVService.alimentarCSVConvenio();
 		return ResponseEntity.ok("");
 	}
 

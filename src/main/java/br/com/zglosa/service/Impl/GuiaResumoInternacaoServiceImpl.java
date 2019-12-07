@@ -31,4 +31,8 @@ public class GuiaResumoInternacaoServiceImpl implements GuiaResumoInternacaoServ
 		return guiaResumoInternacaoRepository.findAll();
 	}
 
+	public GuiaResumoInternacao salvar(GuiaResumoInternacao guiaResumoInternacao){
+		return guiaResumoInternacaoRepository.save(guiaResumoInternacao);
+	}
+
 }

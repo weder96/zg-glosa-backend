@@ -4,11 +4,9 @@ import br.com.zglosa.domain.DadosBeneficiario;
 import br.com.zglosa.domain.GuiaResumoInternacao;
 import br.com.zglosa.domain.LoteGuias;
 import br.com.zglosa.domain.ProcedimentoExecutado;
-import br.com.zglosa.service.FileCSVService;
 import br.com.zglosa.to.CsvDTO;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -19,10 +17,9 @@ import java.util.List;
 
 @Service
 @AllArgsConstructor
-public class FileCSVServiceImpl implements FileCSVService, CommandLineRunner {
+public class FileCSVServiceImpl  {
 
 
-    @Override
     public  void alimentarCSVConvenio() {
         try {
             for(String link: extrairLinkDownloadCSV()) {

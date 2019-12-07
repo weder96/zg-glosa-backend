@@ -12,4 +12,6 @@ public interface GuiaResumoInternacaoService {
 
 	List<GuiaResumoInternacao> findByGuiaPrestador(final Long numGuiaPrestado);
 
+	GuiaResumoInternacao salvar(GuiaResumoInternacao guiaResumoInternacao);
+
 }

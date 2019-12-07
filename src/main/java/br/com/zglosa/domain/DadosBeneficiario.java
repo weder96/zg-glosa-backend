@@ -16,6 +16,7 @@ public @Data class DadosBeneficiario {
 
 	private String numeroCarteira;
 	private String nomeBenificiariio;
+	private String atendimentoRN;
 
 	@OneToOne(mappedBy = "dadosBeneficiario")
 	private GuiaResumoInternacao guiaResumoInternacao;

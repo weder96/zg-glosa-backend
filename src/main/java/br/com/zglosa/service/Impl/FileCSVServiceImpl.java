@@ -1,5 +1,9 @@
 package br.com.zglosa.service.Impl;
 
+import br.com.zglosa.domain.DadosBeneficiario;
+import br.com.zglosa.domain.GuiaResumoInternacao;
+import br.com.zglosa.domain.LoteGuias;
+import br.com.zglosa.domain.ProcedimentoExecutado;
 import br.com.zglosa.service.FileCSVService;
 import br.com.zglosa.to.CsvDTO;
 import lombok.AllArgsConstructor;
@@ -56,6 +60,47 @@ public class FileCSVServiceImpl implements FileCSVService {
             e.printStackTrace();
         }
     }
+
+
+    public void transformarDtoParaObjetoRelacional(List<CsvDTO> csvDTOS) {
+        for (CsvDTO csvDTO : csvDTOS) {
+
+
+            LoteGuias loteGuias = new LoteGuias();
+            loteGuias.setNumeroLote(Integer.parseInt(csvDTO.getLote()));
+
+            DadosBeneficiario dadosBeneficiario = new DadosBeneficiario();
+            dadosBeneficiario.setNumeroCarteira(csvDTO.getMatricula());
+            dadosBeneficiario.setAtendimentoRN(csvDTO.getRn());
+            dadosBeneficiario.setNomeBenificiariio(csvDTO.getNome());
+
+            GuiaResumoInternacao guiaResumoInternacao = new GuiaResumoInternacao();
+            guiaResumoInternacao.setNumeroGuiaPrestador(Long.parseLong(csvDTO.getNumeroGuiaPrestador()));
+            guiaResumoInternacao.setNumeroGuiaSolicitacaoInternacao(Long.parseLong(csvDTO.getNumeroGuiaPrestador()));
+            guiaResumoInternacao.setSenha(Long.parseLong(csvDTO.getSenha()));
+            guiaResumoInternacao.setLoteGuias(loteGuias);
+            guiaResumoInternacao.setDadosBeneficiario(dadosBeneficiario);
+
+
+            ProcedimentoExecutado procedimentoExecutado = new ProcedimentoExecutado();
+            procedimentoExecutado.setDataExecucao(csvDTO.getDataExecucao());
+            procedimentoExecutado.setHoraFinal(csvDTO.getHoraFinal());
+            procedimentoExecutado.setHoraInicial(csvDTO.getHoraInicial());
+            procedimentoExecutado.setCodigoTabela(Integer.parseInt(csvDTO.getCodigoTabela()));
+            procedimentoExecutado.setCodigoProcedimento(Integer.parseInt(csvDTO.getCodigoProcedimento()));
+            procedimentoExecutado.setDescricaoProcedimento(csvDTO.getDescricaoProcedimento());
+            procedimentoExecutado.setQuantidadeExecutada(Integer.parseInt(csvDTO.getQuantidadeExecutada()));
+            procedimentoExecutado.setValorUnitario(Float.parseFloat(csvDTO.getValorUnitario()));
+            procedimentoExecutado.setValorGlosa(Float.parseFloat(csvDTO.getValorGlosa()));
+            procedimentoExecutado.setValorApresentado(Float.parseFloat(csvDTO.getValorApresentado()));
+            procedimentoExecutado.setValorPago(Float.parseFloat(csvDTO.getValorPago()));
+            procedimentoExecutado.setMotivoGlosa(csvDTO.getMotivoGlosa());
+            procedimentoExecutado.setGuiaResumoInternacao(guiaResumoInternacao);
+
+
+        }
+    }
+
 
     public CsvDTO mapearCSVDTO(String linha){
         String[] split = linha.split(",");

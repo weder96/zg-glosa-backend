@@ -26,6 +26,11 @@ public class DadosBeneficiarioServiceImpl implements DadosBeneficiarioService {
 		return dadosBeneficiarioRepository.getOne(id);
 	}
 
+	@Override
+	public DadosBeneficiario getByNumeroCarteira(Integer numeroCarteira) {
+		return dadosBeneficiarioRepository.getByNumeroCarteira(numeroCarteira);
+	}
+
 	public DadosBeneficiario salvar(DadosBeneficiario dadosBeneficiario) {
 		return dadosBeneficiarioRepository.save(dadosBeneficiario);
 	}
